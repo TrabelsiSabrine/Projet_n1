@@ -1,0 +1,25 @@
+h2{
+    color: rgb(51, 47, 155);
+}
+body{
+    background-color: rgb(154, 204, 236);
+    font-family: Arial, sans-serif;
+  
+}
+b{
+    color: rgb(90, 70, 220);   
+}
+h6{
+    color: midnightblue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
+}
+#qrcode {
+    margin-top: 50px;
+}
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

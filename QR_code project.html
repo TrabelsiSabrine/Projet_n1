@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de saisie de matériel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <link rel="stylesheet" href="QRcode1.0.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div id="loginForm">
+            <h2>Connexion</h2>
+            <form id="login">
+                <div class="form-group">
+                    <label for="username"><b>Nom d'utilisateur :</b></label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><b>Mot de passe :</b></label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <button type="button" onclick="authenticateUser()" class="btn btn-primary">Se connecter</button>
+            </form>
+        </div>
+
+        <div id="materialForm" style="display: none;">
+            <h2>Formulaire de saisie de matériel</h2>
+            <form id="materialDataForm">
+                <div class="mb-3">
+                    <label for="material" class="form-label"><b>Nom du matériel :</b></label>
+                    <select id="material" name="material" class="form-select">
+                        <option value="imprimante">Imprimante</option>
+                        <option value="ordinateur">Ordinateur</option>
+                        <option value="souris">Souris</option>
+                        <option value="serveur">Serveur</option>
+                        <option value="switch">Switch</option>
+                        <option value="desktop">Desktop</option>
+                        <option value="clavier">Clavier</option>
+                        <option value="hub">Hub</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="serialNumber"><b>Numéro de série :</b></label>
+                    <input type="text" id="serialNumber" name="serialNumber" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="date"><b>Date :</b></label>
+                    <input type="date" id="date" name="date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="username"><b>Nom d'utilisateur :</b></label>
+                    <input type="text" id="username" name="user" placeholder="saisir votre Nom"  class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label for="service"><b>Service :</b></label>
+                    <input type="text" id="service" name="service" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label"><b>État du matériel :</b></label>
+                    <select id="status" name="status" class="form-select">
+                        <option value="en service">en service</option>
+                        <option value="hors service">hors service</option>
+                        <option value="en panne">en panne</option>
+                        <option value="rebuter">rebuter</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label"><b>Localisation :</b></label>
+                    <input type="text" id="location" name="location" class="form-control" required>
+                </div>
+            </form>
+            <button id="printButton" class="btn btn-primary">Imprimer</button>
+            <div id="qrcode">
+                <button id="downloadBtn" class="btn btn-primary">Télécharger le QR-code</button>
+                <script src="script1.0.js"></script>
+    </div>
+    <script>
+        function authenticateUser() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const validUsername = 'trabelsi sabrine';
+            const validPassword = '123';
+            if (username === validUsername && password === validPassword) {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('materialForm').style.display = 'block';
+                document.getElementById('qrcode').style.display = 'block';
+            } else {
+                alert('Nom d\'utilisateur ou mot de passe incorrect.');
+            }
+            document.getElementById('printButton').addEventListener('click', printQRCode);  
+            const qrCodeImgSrc = document.getElementById('qrcode').src;
+            
+            function downloadQRCode() {
+            const link = document.createElement('a');
+            link.href = qrCodeImgSrc;
+            link.download = 'qr-code.png';
+            link.click();
+            }
+            function printQRCode() {
+    const qrcodeElement = document.getElementById('qrcode');
+    const qrcodeImage = qrcodeElement.getElementsByTagName('img')[0];
+    const printWindow = window.open('', 'blank');
+    printWindow.document.write('<img src="' + qrcodeImage.src + '" style="max-width: 100%;">');
+    printWindow.onload = function() {
+        printWindow.print();
+        printWindow.close();
+    };
+}
+}
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
